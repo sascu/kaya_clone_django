@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Médicos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <div class="max-w-4xl mx-auto p-4">
-        <h1 class="text-2xl font-bold text-center mb-4">Médicos Disponíveis</h1>
-        <div class="grid grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded shadow-md">
-                <h2 class="text-lg font-semibold">Dr. João Silva</h2>
-                <p class="text-gray-600">Cardiologista</p>
-                <a href="{% url 'perfil_medico' 1 %}" class="text-blue-500">Ver Perfil</a>
-            </div>
-        </div>
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4 text-center">Lista de Médicos</h1>
+<div class="grid grid-cols-3 gap-6">
+    {% for medico in medicos %}
+    <div class="bg-white p-4 rounded-lg shadow-lg">
+        <img src="{{ medico.foto.url }}" alt="Foto do médico" class="w-full h-40 object-cover rounded-md">
+        <h2 class="text-xl font-semibold mt-2">{{ medico.nome }}</h2>
+        <p class="text-gray-600">{{ medico.especialidade }}</p>
+        <a href="{% url 'perfil_medico' medico.id %}" class="block mt-3 text-blue-500 hover:underline">Ver perfil</a>
     </div>
-</body>
-</html>
+    {% endfor %}
+</div>
+{% endblock %}

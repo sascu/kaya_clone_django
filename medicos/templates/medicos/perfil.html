@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Médico</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <div class="max-w-2xl mx-auto p-4 bg-white shadow-md rounded">
-        <h1 class="text-2xl font-bold">{{ medico.nome }}</h1>
-        <p class="text-gray-600">{{ medico.especialidade }}</p>
-        <p class="text-gray-800">{{ medico.descricao }}</p>
-        <a href="{% url 'listagem_medicos' %}" class="text-blue-500">Voltar</a>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <img src="{{ medico.foto.url }}" alt="Foto do médico" class="w-32 h-32 rounded-full mx-auto">
+    <h1 class="text-3xl font-bold text-center mt-4">{{ medico.nome }}</h1>
+    <p class="text-center text-gray-600">{{ medico.especialidade }}</p>
+    <div class="mt-4">
+        <h2 class="text-lg font-semibold">Sobre</h2>
+        <p class="text-gray-700">{{ medico.descricao }}</p>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
